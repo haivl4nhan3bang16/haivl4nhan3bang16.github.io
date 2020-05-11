@@ -35,7 +35,7 @@ function playVideo(idTagName, stream) {
 //Cho phép trình duyệt thực hiện cuộc gọi
 openCallVideo().then(stream => playVideo('localVideo', stream));
 
-const peer = new Peer({ key: 'jc6q9vr2m27w4s4i' });
+const peer = new Peer({ key: 'peerjs', host: 'mypeer1999.herokuapp.com' , secure: true, port: 443});
 
 peer.on('open', function (id) {
     $('#my_id').append(id);
