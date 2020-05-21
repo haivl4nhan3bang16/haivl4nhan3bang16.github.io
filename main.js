@@ -1,5 +1,22 @@
 const socket = io('https://stream1999.herokuapp.com/');
 
+let customConfig;
+
+$.ajax({
+    url: "https://service.xirsys.com/ice",
+    data:{
+        ident: "ngoquocduy99",
+        secret: "78efcf92-93a6-11ea-a2ff-0242ac150003",
+        domain: "haivl3nhan4bang16.github.io",
+        application: "default",
+        room: "default",
+        secure: 1
+    }, success: function(data, status){
+        customConfig = data.d;
+        console.log(customConfig);
+    },
+    async: false
+});
 
 socket.on('LIST_ONLINE_USER', onlineUser => {
     onlineUser.forEach(user => {
@@ -35,7 +52,7 @@ function playVideo(idTagName, stream) {
 //Cho phép trình duyệt thực hiện cuộc gọi
 openCallVideo().then(stream => playVideo('localVideo', stream));
 
-const peer = new Peer({ key: 'peerjs', host: 'mypeer1999.herokuapp.com' , secure: true, port: 443});
+const peer = new Peer({ key: 'peerjs', host: 'mypeer1999.herokuapp.com' , secure: true, port: 443, config: customConfig});
 
 peer.on('open', function (id) {
     $('#my_id').append(id);
